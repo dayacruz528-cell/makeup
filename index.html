@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maquillaje Bello</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff8f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Encabezado */
+    header {
+      background: linear-gradient(to right, #ffafcc, #ffc8dd);
+      text-align: center;
+      padding: 20px 0;
+      color: #4a4a4a;
+      font-size: 1.5rem;
+    }
+
+    /* Navegación */
+    nav {
+      background-color: #ffe5ec;
+      padding: 12px;
+      text-align: center;
+    }
+    nav a {
+      text-decoration: none;
+      color: #4a4a4a;
+      margin: 0 20px;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #d63384;
+    }
+
+    /* Inicio */
+    #inicio {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      background-color: #fff0f6;
+    }
+    #inicio img {
+      width: 350px;
+      border-radius: 20px;
+      margin: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    #inicio div {
+      max-width: 500px;
+      text-align: center;
+    }
+    #inicio h2 {
+      color: #d63384;
+      font-size: 2rem;
+    }
+    #inicio p {
+      color: #4a4a4a;
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
+
+    /* Sección catálogo */
+    main {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #4a4a4a;
+    }
+
+    #catalogo {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    article {
+      background-color: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    article:hover {
+      transform: translateY(-5px);
+    }
+
+    article img {
+      max-width: 100%;
+      border-radius: 15px;
+      margin-bottom: 15px;
+    }
+
+    article h3 {
+      color: #d63384;
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+
+    article p {
+      color: #555;
+      font-size: 1rem;
+      margin-bottom: 15px;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #ffafcc;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #d63384;
+    }
+
+    /* Tips para el cuidado de la piel */
+    #tips {
+      background-color: #fff0f6;
+      padding: 40px 20px;
+      margin-top: 40px;
+      border-radius: 20px;
+    }
+    #tips h2 {
+      color: #d63384;
+      margin-bottom: 20px;
+    }
+    .tip-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .tip {
+      background-color: #ffffff;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .tip:hover {
+      transform: translateY(-5px);
+    }
+    .tip img {
+      width: 60px;
+      margin-bottom: 10px;
+    }
+    .tip h3 {
+      color: #d63384;
+      margin-bottom: 10px;
+    }
+    .tip p {
+      color: #4a4a4a;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    /* Carrito */
+    #carrito {
+      background-color: #ffe5ec;
+      border-radius: 15px;
+      padding: 20px;
+      margin-top: 50px;
+    }
+    #carrito h2 {
+      color: #d63384;
+      text-align: center;
+    }
+    #lista-carrito {
+      list-style: none;
+      padding: 0;
+    }
+    #lista-carrito li {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 10px 15px;
+      margin: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .eliminar {
+      background-color: #d63384;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 5px 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .eliminar:hover {
+      background-color: #b3206f;
+    }
+
+    /* Mensaje emergente */
+    #mensaje {
+      display: none;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #d63384;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      animation: aparecer 0.5s ease;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    footer {
+      background-color: #ffe5ec;
+      text-align: center;
+      padding: 15px;
+      color: #4a4a4a;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Maquillaje Bello</h1>
+  </header>
+
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#catalogo">Catálogo</a>
+    <a href="#tips">Tips de Cuidado</a>
+    <a href="#carrito">Carrito</a>
+  </nav>
+
+  <!-- Sección de Inicio -->
+  <section id="inicio">
+    <img src="maquillaje.jpg" alt="Maquillaje Bello" />
+    <div>
+      <h2>Bienvenida a Maquillaje Bello 💋</h2>
+      <p>
+        Descubre productos de belleza de alta calidad para realzar tu estilo.  
+        Encuentra labiales, brochas, sombras y más con los mejores tonos y texturas.  
+        ¡Explora nuestro catálogo y arma tu look perfecto!
+      </p>
+    </div>
+  </section>
+
+  <!-- Catálogo -->
+  <main>
+    <h2>Catálogo</h2>
+    <section id="catalogo">
+      <article>
+        <img src="./labial rojo.jpg" alt="Labial Rojo" />
+        <h3>Labial Rojo</h3>
+        <p>Color intenso y duradero para cualquier ocasión.</p>
+        <a href="#" class="btn" data-producto="Labial Rojo">Agregar al carrito</a>
+      </article>
+
+      <article>
+        <img src="./set de brochas.jpg" alt="Set de brochas" />
+        <h3>Set de Brochas</h3>
+        <p>Brochas suaves para una aplicación perfecta del maquillaje.</p>
+        <a href="#" class="btn" data-producto="Set de Brochas">Agregar al carrito</a>
+      </article>
+
+      <article>
+        <img src="./paleta de sombras.jpg" alt="Paleta de Sombras" />
+        <h3>Paleta de Sombras</h3>
+        <p>Colores vibrantes que resaltan tu mirada.</p>
+        <a href="#" class="btn" data-producto="Paleta de Sombras">Agregar al carrito</a>
+      </article>
+    </section>
+
+    <!-- Tips de Cuidado -->
+    <section id="tips">
+      <h2>💧 Tips para el Cuidado de la Piel</h2>
+      <div class="tip-grid">
+        <div class="tip">
+          <img src="./limpieza facial.jpg" alt="Limpieza facial">
+          <h3>Limpieza Diaria</h3>
+          <p>Lava tu rostro dos veces al día con un jabón suave para eliminar impurezas y mantener tu piel fresca.</p>
+        </div>
+        <div class="tip">
+          <img src="./hidratacion.jpg" alt="Hidratación">
+          <h3>Hidrátate</h3>
+          <p>Usa una crema hidratante adecuada para tu tipo de piel y bebe suficiente agua cada día.</p>
+        </div>
+        <div class="tip">
+          <img src="./protector solar.webp" alt="Protector solar">
+          <h3>Protección Solar</h3>
+          <p>Aplica protector solar todos los días, incluso si no hay sol visible. Evita el envejecimiento prematuro.</p>
+        </div>
+        <div class="tip">
+          <img src="./exfoliar piel.jpg" alt="Exfoliación">
+          <h3>Exfolia tu piel</h3>
+          <p>Haz una exfoliación suave una o dos veces por semana para eliminar células muertas y revitalizar tu rostro.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Carrito -->
+    <section id="carrito">
+      <h2>🛒 Carrito de Compras</h2>
+      <ul id="lista-carrito"></ul>
+    </section>
+  </main>
+
+  <div id="mensaje"></div>
+
+  <footer>
+    <p>Todos los derechos reservados - Maquillaje Bello © 2025</p>
+  </footer>
+
+  <script>
+    const botones = document.querySelectorAll('.btn');
+    const listaCarrito = document.getElementById('lista-carrito');
+    const mensaje = document.getElementById('mensaje');
+
+    botones.forEach(boton => {
+      boton.addEventListener('click', (e) => {
+        e.preventDefault();
+        const producto = boton.getAttribute('data-producto');
+
+        // Crear elemento en el carrito
+        const item = document.createElement('li');
+        item.textContent = producto;
+
+        const eliminar = document.createElement('button');
+        eliminar.textContent = 'Eliminar';
+        eliminar.classList.add('eliminar');
+        eliminar.addEventListener('click', () => {
+          item.remove();
+        });
+
+        item.appendChild(eliminar);
+        listaCarrito.appendChild(item);
+
+        // Mostrar mensaje
+        mensaje.textContent = `¡${producto} agregado al carrito! 💄`;
+        mensaje.style.display = 'block';
+        setTimeout(() => { mensaje.style.display = 'none'; }, 2000);
+      });
+    });
+  </script>
+</body>
+</html>
